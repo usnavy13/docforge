@@ -1,0 +1,38 @@
+{
+  "name": "@docforge/ai-bridge",
+  "version": "0.0.1",
+  "description": "AI command protocol and integration for DocForge",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "docforge",
+    "ai",
+    "command-protocol",
+    "integration"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@docforge/core": "workspace:*"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0",
+    "rimraf": "^5.0.0"
+  }
+}

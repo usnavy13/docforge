@@ -1,0 +1,41 @@
+{
+  "name": "@docforge/file-io",
+  "version": "0.0.1",
+  "description": "File format handling for DocForge (XLSX, PPTX, PDF)",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "docforge",
+    "xlsx",
+    "pptx",
+    "pdf",
+    "file-io"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@docforge/core": "workspace:*",
+    "xlsx": "^0.18.0",
+    "pptxgenjs": "^3.12.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0",
+    "rimraf": "^5.0.0"
+  }
+}

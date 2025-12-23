@@ -1,0 +1,33 @@
+{
+  "name": "docforge",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Modern, AI-native document editing for spreadsheets and presentations",
+  "scripts": {
+    "dev": "pnpm -r dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "test:e2e": "pnpm -r test:e2e",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "clean": "pnpm -r clean && rimraf node_modules"
+  },
+  "keywords": [
+    "spreadsheet",
+    "presentation",
+    "excel",
+    "powerpoint",
+    "ai",
+    "editor",
+    "canvas"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0"
+}
