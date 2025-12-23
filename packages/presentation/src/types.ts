@@ -1,6 +1,13 @@
 // Types for @docforge/presentation
 
-import type { ShapeType, ShapeStyle, TextStyle, SlideLayout, AIResponse, Rect } from '@docforge/core';
+import type {
+  ShapeType,
+  ShapeStyle,
+  TextStyle,
+  SlideLayout,
+  AIResponse,
+  Rect,
+} from '@docforge/core';
 
 export type ToolbarMode = 'full' | 'minimal' | 'none';
 
@@ -13,6 +20,7 @@ export interface PresentationOptions {
 }
 
 export interface PresentationEvents {
+  [key: string]: unknown;
   'document:changed': ChangeSet;
   'selection:changed': ShapeSelection;
   'command:executed': AIResponse;

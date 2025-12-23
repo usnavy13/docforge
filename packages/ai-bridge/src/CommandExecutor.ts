@@ -62,10 +62,7 @@ export class CommandExecutor extends EventEmitter<BridgeEvents> {
       }
 
       // Execute with timeout
-      const result = await this.executeWithTimeout(
-        handler(command.payload, command),
-        this.timeout
-      );
+      const result = await this.executeWithTimeout(handler(command.payload, command), this.timeout);
 
       const response: AIResponse = {
         commandId: command.id,
@@ -93,10 +90,7 @@ export class CommandExecutor extends EventEmitter<BridgeEvents> {
     }
   }
 
-  private async executeWithTimeout<T>(
-    promise: Promise<T> | T,
-    timeout: number
-  ): Promise<T> {
+  private async executeWithTimeout<T>(promise: Promise<T> | T, timeout: number): Promise<T> {
     if (!(promise instanceof Promise)) {
       return promise;
     }
@@ -104,10 +98,7 @@ export class CommandExecutor extends EventEmitter<BridgeEvents> {
     return Promise.race([
       promise,
       new Promise<never>((_, reject) =>
-        setTimeout(
-          () => reject(new Error(`Command timed out after ${timeout}ms`)),
-          timeout
-        )
+        setTimeout(() => reject(new Error(`Command timed out after ${timeout}ms`)), timeout)
       ),
     ]);
   }

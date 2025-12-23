@@ -65,15 +65,7 @@ export const EXPORT_FORMATS = {
 };
 
 // Chart types
-export const CHART_TYPES = [
-  'bar',
-  'column',
-  'line',
-  'pie',
-  'doughnut',
-  'scatter',
-  'area',
-] as const;
+export const CHART_TYPES = ['bar', 'column', 'line', 'pie', 'doughnut', 'scatter', 'area'] as const;
 
 export type ChartType = (typeof CHART_TYPES)[number];
 

@@ -7,7 +7,7 @@ type EventHandler<T = unknown> = (data: T) => void;
 /**
  * Type-safe event emitter base class
  */
-export class EventEmitter<TEvents extends Record<string, unknown>> {
+export class EventEmitter<TEvents extends Record<string, unknown> = Record<string, unknown>> {
   private handlers: Map<keyof TEvents, Set<EventHandler>> = new Map();
 
   /**

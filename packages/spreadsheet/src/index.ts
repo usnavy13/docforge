@@ -5,10 +5,4 @@ export { Spreadsheet } from './Spreadsheet';
 export type { SpreadsheetOptions, SpreadsheetEvents } from './types';
 
 // Re-export core types
-export type {
-  CellValue,
-  CellStyle,
-  CellRange,
-  AICommand,
-  AIResponse,
-} from '@docforge/core';
+export type { CellValue, CellStyle, CellRange, AICommand, AIResponse } from '@docforge/core';

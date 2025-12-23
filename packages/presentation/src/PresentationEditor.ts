@@ -1,7 +1,12 @@
 // Placeholder for PresentationEditor class
 // Will be implemented with custom canvas-based rendering
 
-import { EventEmitter, generateId, DEFAULT_SLIDE_WIDTH, DEFAULT_SLIDE_HEIGHT } from '@docforge/core';
+import {
+  EventEmitter,
+  generateId,
+  DEFAULT_SLIDE_WIDTH,
+  DEFAULT_SLIDE_HEIGHT,
+} from '@docforge/core';
 import type { PresentationOptions, PresentationEvents, Presentation, Slide, Shape } from './types';
 
 /**
@@ -36,21 +41,21 @@ export class PresentationEditor extends EventEmitter<PresentationEvents> {
     this.options = options;
 
     // Resolve container
-    if (typeof options.container === 'string') {
-      const el = document.querySelector(options.container);
+    if (typeof this.options.container === 'string') {
+      const el = document.querySelector(this.options.container);
       if (!el) {
-        throw new Error(`Container not found: ${options.container}`);
+        throw new Error(`Container not found: ${this.options.container}`);
       }
       this.container = el as HTMLElement;
     } else {
-      this.container = options.container;
+      this.container = this.options.container;
     }
 
     // Initialize presentation
-    this.presentation = options.initialData ?? this.createEmptyPresentation();
+    this.presentation = this.options.initialData ?? this.createEmptyPresentation();
 
     // TODO: Initialize canvas-based rendering
-    console.log('PresentationEditor initialized with options:', options);
+    console.log('PresentationEditor initialized with options:', this.options);
   }
 
   private createEmptyPresentation(): Presentation {
@@ -132,11 +137,7 @@ export class PresentationEditor extends EventEmitter<PresentationEvents> {
   /**
    * Add a shape to a slide
    */
-  addShape(
-    slideIndex: number,
-    type: Shape['type'],
-    props: Partial<Shape>
-  ): string {
+  addShape(slideIndex: number, type: Shape['type'], props: Partial<Shape>): string {
     const slide = this.presentation.slides[slideIndex];
     if (!slide) {
       throw new Error(`Slide not found: ${slideIndex}`);
@@ -163,11 +164,7 @@ export class PresentationEditor extends EventEmitter<PresentationEvents> {
   /**
    * Add a text box to a slide
    */
-  addTextBox(
-    slideIndex: number,
-    text: string,
-    props: Partial<Shape>
-  ): string {
+  addTextBox(slideIndex: number, text: string, props: Partial<Shape>): string {
     return this.addShape(slideIndex, 'textbox', {
       ...props,
       text: {
@@ -180,11 +177,7 @@ export class PresentationEditor extends EventEmitter<PresentationEvents> {
   /**
    * Add an image to a slide
    */
-  addImage(
-    slideIndex: number,
-    src: string,
-    props: Partial<Shape>
-  ): string {
+  addImage(slideIndex: number, src: string, props: Partial<Shape>): string {
     return this.addShape(slideIndex, 'image', {
       ...props,
       src,

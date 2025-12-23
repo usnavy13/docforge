@@ -47,7 +47,7 @@ export class Spreadsheet extends EventEmitter<SpreadsheetEvents> {
     this.workbook = options.initialData ?? this.createEmptyWorkbook();
 
     // TODO: Initialize FortuneSheet-based rendering
-    console.log('Spreadsheet initialized with options:', options);
+    console.log('Spreadsheet initialized with options:', this.options);
   }
 
   private createEmptyWorkbook(): Workbook {

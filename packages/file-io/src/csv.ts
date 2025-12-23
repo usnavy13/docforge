@@ -5,10 +5,7 @@ import type { CsvOptions } from './types';
 /**
  * Read a CSV file and return data
  */
-export async function readCsv(
-  file: File | string,
-  options?: CsvOptions
-): Promise<string[][]> {
+export async function readCsv(file: File | string, options?: CsvOptions): Promise<string[][]> {
   const delimiter = options?.delimiter ?? ',';
   const quoteChar = options?.quoteChar ?? '"';
 
@@ -66,10 +63,7 @@ export async function readCsv(
 /**
  * Write data to CSV format
  */
-export async function writeCsv(
-  data: string[][],
-  options?: CsvOptions
-): Promise<Blob> {
+export async function writeCsv(data: string[][], options?: CsvOptions): Promise<Blob> {
   const delimiter = options?.delimiter ?? ',';
   const quoteChar = options?.quoteChar ?? '"';
 
@@ -80,7 +74,9 @@ export async function writeCsv(
       cell.includes('\n') ||
       cell.includes('\r')
     ) {
-      return quoteChar + cell.replace(new RegExp(quoteChar, 'g'), quoteChar + quoteChar) + quoteChar;
+      return (
+        quoteChar + cell.replace(new RegExp(quoteChar, 'g'), quoteChar + quoteChar) + quoteChar
+      );
     }
     return cell;
   };

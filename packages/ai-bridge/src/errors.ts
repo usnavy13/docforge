@@ -5,11 +5,7 @@ import type { DocForgeError } from './types';
 /**
  * Create a DocForge error object
  */
-export function createError(
-  code: string,
-  message: string,
-  details?: unknown
-): DocForgeError {
+export function createError(code: string, message: string, details?: unknown): DocForgeError {
   return {
     code,
     message,

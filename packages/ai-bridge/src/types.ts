@@ -31,6 +31,7 @@ export interface DocForgeError {
  * Event types emitted by the bridge
  */
 export interface BridgeEvents {
+  [key: string]: unknown;
   'command:received': AICommand;
   'command:executed': AIResponse;
   'command:error': { command: AICommand; error: DocForgeError };

@@ -10,11 +10,14 @@ import type { TransportOptions } from './types';
 export class PostMessageTransport {
   private targetWindow: Window;
   private targetOrigin: string;
-  private pendingResponses: Map<string, {
-    resolve: (response: AIResponse) => void;
-    reject: (error: Error) => void;
-    timeout: ReturnType<typeof setTimeout>;
-  }> = new Map();
+  private pendingResponses: Map<
+    string,
+    {
+      resolve: (response: AIResponse) => void;
+      reject: (error: Error) => void;
+      timeout: ReturnType<typeof setTimeout>;
+    }
+  > = new Map();
 
   constructor(targetWindow: Window, options?: TransportOptions) {
     this.targetWindow = targetWindow;
@@ -40,10 +43,7 @@ export class PostMessageTransport {
         timeout: timeoutId,
       });
 
-      this.targetWindow.postMessage(
-        { type: 'docforge:command', command },
-        this.targetOrigin
-      );
+      this.targetWindow.postMessage({ type: 'docforge:command', command }, this.targetOrigin);
     });
   }
 

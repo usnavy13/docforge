@@ -13,6 +13,7 @@ export interface SpreadsheetOptions {
 }
 
 export interface SpreadsheetEvents {
+  [key: string]: unknown;
   'document:changed': ChangeSet;
   'selection:changed': Selection;
   'command:executed': AIResponse;
