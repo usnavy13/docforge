@@ -2,7 +2,7 @@
 // Supports XLSX, PPTX, PDF, CSV, ODF formats
 
 // XLSX operations
-export { readXlsx, writeXlsx } from './xlsx';
+export { readXlsx, writeXlsx, csvToSheet, sheetToCsv } from './xlsx';
 
 // PPTX operations
 export { readPptx, writePptx } from './pptx';

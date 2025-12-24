@@ -60,6 +60,7 @@ export interface CellStyle {
   bold?: boolean;
   italic?: boolean;
   underline?: boolean;
+  strikethrough?: boolean;
   fontSize?: number;
   fontFamily?: string;
   fontColor?: string;
