@@ -280,9 +280,37 @@ export const SpreadsheetEditor = forwardRef<SpreadsheetEditorRef, SpreadsheetEdi
         setData: (workbook: Workbook) => {
           setWorkbookTitle(workbook.title);
           const newData = docforgeToFortuneSheet(workbook);
+
+          // Update: this will add/update the new sheets
           setFsData(newData);
-          // Use FortuneSheet API to update the sheets
           fsWorkbookRef.current?.updateSheet(newData);
+
+          // Cleanup: delete sheets that were present before but are not in the new data
+          // We do this in a timeout to ensure the new sheets are registered and active
+          setTimeout(() => {
+            if (!fsWorkbookRef.current) return;
+
+            const currentSheets = fsWorkbookRef.current.getAllSheets();
+            const newSheetIds = new Set(newData.map(s => s.id));
+
+            // Find sheets to delete (exist in current but not in new)
+            // Note: We check currentSheets because some might have been implicitly removed or changed
+            currentSheets.forEach(sheet => {
+              if (!newSheetIds.has(sheet.id)) {
+                try {
+                  fsWorkbookRef.current?.deleteSheet({ id: sheet.id });
+                } catch (e) {
+                  console.warn('Failed to delete old sheet:', sheet.id, e);
+                }
+              }
+            });
+
+            // Ensure proper active sheet logic
+            const activeSheetId = newData.find(s => s.status === 1)?.id || newData[0]?.id;
+            if (activeSheetId) {
+              fsWorkbookRef.current.activateSheet({ id: activeSheetId });
+            }
+          }, 0);
         },
 
         clear: () => {

@@ -51,12 +51,20 @@ function App() {
     []
   );
 
+
+
   // File operations
   const handleOpenFile = useCallback(async (file: File) => {
     try {
       const wb = await readXlsx(file);
+
+      // DEBUG: Check keys
+      if (wb.sheets.length > 0) {
+        // console.log('Loaded Workbook Keys Sample:', Array.from(wb.sheets[0].cells.keys()).slice(0, 5));
+        // console.log('Loaded Workbook Cell Count:', wb.sheets[0].cells.size);
+      }
+
       if (editorRef.current) {
-        // Cast to spreadsheet Workbook type (compatible structure)
         editorRef.current.setData(wb as unknown as Workbook);
       }
       setShowFilePanel(false);
